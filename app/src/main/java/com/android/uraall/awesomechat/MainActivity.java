@@ -12,6 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     private String userName;
 
+    FirebaseDatabase database;
+    DatabaseReference messagesDatabaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        database = FirebaseDatabase.getInstance();
+        messagesDatabaseReference = database.getReference().child("messages");
 
         progressBar = findViewById(R.id.progressBar);
         sendImageButton = findViewById(R.id.sendPhotoButton);
@@ -77,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                AwesomeMessage message = new AwesomeMessage();
+                message.setText(messageEditText.getText().toString());
+                message.setName(userName);
+                message.setImageUrl(null);
+
+                messagesDatabaseReference.push().setValue(message);
+
                 messageEditText.setText("");
             }
         });
