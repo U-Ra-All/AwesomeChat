@@ -56,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
         sendMessageButton = findViewById(R.id.sendMessageButton);
         messageEditText = findViewById(R.id.messageEditText);
 
-        userName = "Default User";
+        Intent intent = getIntent();
+        if (intent != null) {
+            userName = intent.getStringExtra("userName");
+        } else {
+            userName = "Default User";
+        }
 
         messageListView = findViewById(R.id.messageListView);
         List<AwesomeMessage> awesomeMessages = new ArrayList<>();
