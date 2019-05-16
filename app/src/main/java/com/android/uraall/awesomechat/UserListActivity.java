@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -98,6 +99,8 @@ public class UserListActivity extends AppCompatActivity {
 
         userRecyclerView = findViewById(R.id.userListRecyclerView);
         userRecyclerView.setHasFixedSize(true);
+        userRecyclerView.addItemDecoration(new DividerItemDecoration(
+                userRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
         userLayoutManager = new LinearLayoutManager(this);
         userAdapter = new UserAdapter(userArrayList);
 
