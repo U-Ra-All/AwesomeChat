@@ -194,6 +194,7 @@ public class ChatActivity extends AppCompatActivity {
                 if (message.getSender().equals(auth.getCurrentUser().getUid())
                         && message.getRecipient().equals(recipientUserId)) {
                     message.setMine(true);
+                    message.setName(userName);
                     adapter.add(message);
                 } else if (message.getRecipient().equals(auth.getCurrentUser().getUid())
                                 && message.getSender().equals(recipientUserId)) {

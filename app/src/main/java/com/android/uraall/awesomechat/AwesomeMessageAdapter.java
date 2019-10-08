@@ -62,7 +62,9 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
             viewHolder.messageTextView.setVisibility(View.VISIBLE);
             viewHolder.photoImageView.setVisibility(View.GONE);
             viewHolder.messageTextView.setText(awesomeMessage.getText());
+            viewHolder.nameTextView.setText(awesomeMessage.getName());
         } else {
+            viewHolder.nameTextView.setText(awesomeMessage.getName());
             viewHolder.messageTextView.setVisibility(View.GONE);
             viewHolder.photoImageView.setVisibility(View.VISIBLE);
             Glide.with(viewHolder.photoImageView.getContext())
@@ -96,10 +98,12 @@ public class AwesomeMessageAdapter extends ArrayAdapter<AwesomeMessage> {
 
         private ImageView photoImageView;
         private TextView messageTextView;
+        private TextView nameTextView;
 
         public ViewHolder(View view) {
             photoImageView = view.findViewById(R.id.photoImageView);
             messageTextView = view.findViewById(R.id.messageTextView);
+            nameTextView = view.findViewById(R.id.nameTextView);
         }
 
     }
